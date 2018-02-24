@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+// import { Helmet } from 'react-helmet'
+import Post from './components/Post'
+import profileImage from './assets/profile-picture.png'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const sampleComments = [
+  { name: 'Zosia', content: 'sounds like a good idea' },
+  { name: 'Zosia', content: 'When can we start?' },
+  { name: 'Patrick', content: 'How about next Tuesday?' },
+]
 
-export default App;
+const App = () => (
+  <div className="App">
+    <h2>Scattr</h2>
+    <Post
+      firstName="Patrick"
+      lastName="Stockwell"
+      profileImage={profileImage}
+      postContent="The is the first idea to be posted to Scattr"
+      claps={25}
+      comments={sampleComments}
+    />
+  </div>
+)
+
+export default App
