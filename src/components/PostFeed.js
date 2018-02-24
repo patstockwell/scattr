@@ -1,8 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import Post from './Post'
 
-const PostFeed = props => (
-  props.posts.map(post => (
+const FeedWrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+`
+
+const PostFeed = (props) => {
+  const posts = props.posts.map(post => (
     <Post
       key={post.id}
       firstName={post.firstName}
@@ -13,6 +20,16 @@ const PostFeed = props => (
       comments={post.comments}
     />
   ))
-)
+
+  return (
+    <FeedWrapper>
+      {posts}
+    </FeedWrapper>
+  )
+}
+
+PostFeed.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+}
 
 export default PostFeed
