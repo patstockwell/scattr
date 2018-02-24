@@ -37,6 +37,9 @@
           ".jsx"
         ]
       }
-    ]
+    ],
+    "env": {
+        "browser": true
+    }
   }
 }

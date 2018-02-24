@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Helmet } from 'react-helmet'
+import Head from './components/Head'
 import profileImage from './assets/profile-picture.png'
 import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
@@ -11,11 +11,11 @@ class App extends Component {
       newCommentValue: '',
       samplePosts,
     }
-    this.addComment = this.addComment.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInput = this.handleInput.bind(this)
   }
 
-  addComment(event) {
+  handleSubmit(event) {
     event.preventDefault()
     const newComment = {
       id: 234234285,
@@ -28,7 +28,8 @@ class App extends Component {
     }
 
     this.setState(prevState => ({
-      samplePosts: [newComment, ...prevState.samplePosts]
+      newCommentValue: '',
+      samplePosts: [newComment, ...prevState.samplePosts],
     }))
   }
 
@@ -42,8 +43,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Head />
         <h2>Scattr</h2>
-        <form onSubmit={this.addComment} >
+        <form onSubmit={this.handleSubmit} >
           <input type="text" value={this.state.newCommentValue} onChange={this.handleInput} />
           <input type="submit" value="Post" />
         </form>
