@@ -1,26 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react'
 // import { Helmet } from 'react-helmet'
-import Post from './components/Post'
-import profileImage from './assets/profile-picture.png'
+import PostFeed from './components/PostFeed'
+import samplePosts from './samplePosts'
 
-const sampleComments = [
-  { name: 'Zosia', content: 'sounds like a good idea' },
-  { name: 'Zosia', content: 'When can we start?' },
-  { name: 'Patrick', content: 'How about next Tuesday?' },
-]
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      samplePosts,
+    }
+  }
 
-const App = () => (
-  <div className="App">
-    <h2>Scattr</h2>
-    <Post
-      firstName="Patrick"
-      lastName="Stockwell"
-      profileImage={profileImage}
-      postContent="The is the first idea to be posted to Scattr"
-      claps={25}
-      comments={sampleComments}
-    />
-  </div>
-)
+  render() {
+    return (
+      <div className="App">
+        <h2>Scattr</h2>
+        <PostFeed posts={this.state.samplePosts} />
+      </div>
+    )
+  }
+}
 
 export default App
