@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Clap from './Clap'
 import SpeechBubble from './SpeechBubble'
+import Comments from './Comments'
 
 const Post = props => (
   <div>
@@ -12,6 +13,7 @@ const Post = props => (
     <span>{props.claps}</span>
     <SpeechBubble />
     <span>{props.comments.length}</span>
+    <Comments comments={props.comments} />
   </div>
 )
 
