@@ -29,8 +29,15 @@ const FlexDiv = styled.div`
   align-items: center;
 `
 
+const PostTile = styled.div`
+  border: solid 1px #EFEFEF;
+  border-radius: 5px;
+  padding: 0px 20px;
+  margin-bottom: 10px;
+`
+
 const Post = props => (
-  <div>
+  <PostTile>
     <FlexDiv>
       <ImageColumn>
         <ProfileImage className="post-profile-picture" src={props.profileImage} alt={`${props.firstName} ${props.lastName}`} />
@@ -45,7 +52,7 @@ const Post = props => (
     <SpeechBubble />
     <span>{props.comments.length}</span>
     <Comments comments={props.comments} />
-  </div>
+  </PostTile>
 )
 
 Post.propTypes = {
