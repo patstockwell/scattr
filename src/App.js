@@ -25,8 +25,13 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      newCommentValue: '',
-      samplePosts,
+      inputFieldValue: '',
+      posts: samplePosts,
+      user: {
+        firstName: 'Patrick',
+        lastName: 'Stockwell',
+        profileImage,
+      }
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInput = this.handleInput.bind(this)
@@ -34,26 +39,27 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const newComment = {
+    const newPost = {
       id: 234234285,
-      firstName: 'Patrick',
-      lastName: 'Stockwell',
-      profileImage,
-      postContent: this.state.newCommentValue,
+      firstName: this.state.user.firstName,
+      lastName: this.state.user.lastName,
+      profileImage: this.state.user.profileImage,
+      postContent: this.state.inputFieldValue,
       claps: 0,
       comments: [],
+      tags: [],
     }
 
     this.setState(prevState => ({
-      newCommentValue: '',
-      samplePosts: [newComment, ...prevState.samplePosts],
+      inputFieldValue: '', // reset input field
+      posts: [newPost, ...prevState.posts],
     }))
   }
 
   handleInput(event) {
     event.preventDefault()
     this.setState({
-      newCommentValue: event.target.value,
+      inputFieldValue: event.target.value,
     })
   }
 
@@ -63,10 +69,10 @@ class App extends Component {
         <Head />
         <h2>Scattr</h2>
         <form onSubmit={this.handleSubmit} >
-          <input type="text" value={this.state.newCommentValue} onChange={this.handleInput} />
+          <input type="text" value={this.state.inputFieldValue} onChange={this.handleInput} />
           <input type="submit" value="Post" />
         </form>
-        <PostFeed posts={this.state.samplePosts} />
+        <PostFeed posts={this.state.posts} />
       </div>
     )
   }

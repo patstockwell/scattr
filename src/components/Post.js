@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import PostActions from './PostActions'
-import { hoverSuperLightGrey, lightGrey } from '../utilities/constants'
+import PostActions from './post-actions/PostActions'
+import TagList from './TagList'
+import { hoverSuperLightGrey, lightGrey, boxShadow } from '../utilities/constants'
 
-const PostTile = styled.a`
-  display: block;
+const PostTile = styled.div`
   border: solid 1px ${lightGrey}; 
   border-radius: 5px;
   padding: 12px 12px;
   margin-bottom: 10px;
   text-decoration: none;
+  cursor: pointer;
+  transition: all ease-in-out 200ms;
+
   &:link,
   &:visited {
     color: initial;
@@ -19,6 +22,7 @@ const PostTile = styled.a`
   &:hover,
   &:active {
     background-color: ${hoverSuperLightGrey};
+    box-shadow: 0px 5px 11px ${boxShadow};
   }
 `
 
@@ -58,6 +62,7 @@ const Post = props => (
       <ProfileImage src={props.profileImage} alt={`${props.firstName} ${props.lastName}`} />
       <Name>{`${props.firstName} ${props.lastName}`}</Name>
       <Content>{props.postContent}</Content>
+      <TagList tags={props.tags} />
       <PostActions commentCount={props.comments.length} claps={props.claps} />
     </NameAndContent>
     {/* <Comments comments={props.comments} /> */}
@@ -71,6 +76,7 @@ Post.propTypes = {
   postContent: PropTypes.string.isRequired,
   claps: PropTypes.number.isRequired,
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 export default Post

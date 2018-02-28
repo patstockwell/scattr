@@ -18,6 +18,7 @@ const PostFeed = (props) => {
       postContent={post.postContent}
       claps={post.claps}
       comments={post.comments}
+      tags={post.tags}
     />
   ))
 

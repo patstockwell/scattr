@@ -20,6 +20,7 @@ const samplePosts = [
     postContent: 'The is the first idea to be posted to Scattr',
     claps: 25,
     comments: sampleComments1,
+    tags: ['#first', '#post', '#new', '#scattr', '#Patrick']
   },
   {
     id: 234234275,
@@ -29,6 +30,7 @@ const samplePosts = [
     postContent: 'The is the second idea to be posted to Scattr. It\'s a bit longer than the first. It also has a different key.',
     claps: 8,
     comments: sampleComments2,
+    tags: ['#second', '#post', '#scattr', '#REAGroup']
   },
   {
     id: 234234276,
@@ -38,6 +40,7 @@ const samplePosts = [
     postContent: 'Remove handles from the "push-side" of the door',
     claps: 41,
     comments: sampleComments2,
+    tags: []
   },
 ]
 
