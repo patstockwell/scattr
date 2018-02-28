@@ -1,8 +1,25 @@
 import React, { Component } from 'react'
+import { injectGlobal } from 'styled-components'
 import Head from './components/Head'
 import profileImage from './assets/profile-picture.png'
 import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
+import { charcoal } from './utilities/constants'
+
+/* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
+
+injectGlobal`
+  body {
+    color: ${charcoal};
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 23px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 20px;
+  }
+`
 
 class App extends Component {
   constructor() {

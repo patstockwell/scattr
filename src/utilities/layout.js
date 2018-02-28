@@ -10,4 +10,7 @@ export const NineColumns = '74%'
 export const TenColumns = '82.6666666667%'
 export const ElevenColumns = '91.3333333333%'
 
+export const TenAndOneHalfColumns = '89%'
+export const OneAndOneHalfColumns = '7%'
+
 export const ColumnLeftMargin = '4%'

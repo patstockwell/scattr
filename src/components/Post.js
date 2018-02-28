@@ -1,57 +1,66 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Clap from './Clap'
-import SpeechBubble from './SpeechBubble'
-import Comments from './Comments'
-import { TenColumns, TwoColumns, ColumnLeftMargin } from '../utilities/layout'
+import PostActions from './PostActions'
+import { hoverSuperLightGrey, lightGrey } from '../utilities/constants'
+
+const PostTile = styled.a`
+  display: block;
+  border: solid 1px ${lightGrey}; 
+  border-radius: 5px;
+  padding: 12px 12px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  &:link,
+  &:visited {
+    color: initial;
+  }
+
+  &:hover,
+  &:active {
+    background-color: ${hoverSuperLightGrey};
+  }
+`
+
+const NameAndContent = styled.div`
+  margin-left: 58px;
+`
 
 const ProfileImage = styled.img`
   max-width: 50px;
   max-height: 50px;
   border-radius: 50%;
   width: 100%;
+  float: left;
+  margin-top: 5px;
+  margin-left: -58px;
+  position: absolute;
 `
 
-const NameAndContent = styled.div`
-  display: inline-block;
-  width: ${TenColumns};
-  margin-left: ${ColumnLeftMargin};
+const Text = styled.p`
+  text-overflow: ellipsis;
+  line-height: 20px;
+  margin: 10px 0 0 0;
 `
 
-const ImageColumn = styled.div`
-  display:inline-block;
-  width: ${TwoColumns};
+const Content = Text.extend`
+  font-size: 14px;
 `
 
-const FlexDiv = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const PostTile = styled.div`
-  border: solid 1px #EFEFEF;
-  border-radius: 5px;
-  padding: 0px 20px;
-  margin-bottom: 10px;
+const Name = Text.extend`
+  font-size: 15px;
+  font-weight: bold;
 `
 
 const Post = props => (
-  <PostTile>
-    <FlexDiv>
-      <ImageColumn>
-        <ProfileImage className="post-profile-picture" src={props.profileImage} alt={`${props.firstName} ${props.lastName}`} />
-      </ImageColumn>
-      <NameAndContent>
-        <p className="post-full-name">{`${props.firstName} ${props.lastName}`}</p>
-        <p className="post-content">{props.postContent}</p>
-      </NameAndContent>
-    </FlexDiv>
-    <Clap />
-    <span>{props.claps}</span>
-    <SpeechBubble />
-    <span>{props.comments.length}</span>
-    <Comments comments={props.comments} />
+  <PostTile href="">
+    <NameAndContent>
+      <ProfileImage src={props.profileImage} alt={`${props.firstName} ${props.lastName}`} />
+      <Name>{`${props.firstName} ${props.lastName}`}</Name>
+      <Content>{props.postContent}</Content>
+      <PostActions commentCount={props.comments.length} claps={props.claps} />
+    </NameAndContent>
+    {/* <Comments comments={props.comments} /> */}
   </PostTile>
 )
 
