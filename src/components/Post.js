@@ -63,9 +63,12 @@ const Post = props => (
       <Name>{`${props.firstName} ${props.lastName}`}</Name>
       <Content>{props.postContent}</Content>
       <TagList tags={props.tags} />
-      <PostActions commentCount={props.comments.length} claps={props.claps} />
+      <PostActions
+        commentCount={props.comments.length}
+        claps={props.claps}
+        clapOnce={props.clapOnce}
+      />
     </NameAndContent>
-    {/* <Comments comments={props.comments} /> */}
   </PostTile>
 )
 
@@ -77,6 +80,7 @@ Post.propTypes = {
   claps: PropTypes.number.isRequired,
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  clapOnce: PropTypes.func.isRequired
 }
 
 export default Post

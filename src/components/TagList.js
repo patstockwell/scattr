@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { salmon } from '../utilities/constants'
 
 const List = styled.div`
   margin: 6px 0px;
@@ -8,7 +9,7 @@ const List = styled.div`
 
 const Tag = styled.a`
   font-size: 10px;
-  color: salmon;
+  color: ${salmon};
   -webkit-text-decoration: none;
   text-decoration: none;
   margin: 0 2px;

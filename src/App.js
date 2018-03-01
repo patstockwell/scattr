@@ -35,6 +35,7 @@ class App extends Component {
       }
     }
     this.createPost = this.createPost.bind(this)
+    this.clapOnce = this.clapOnce.bind(this)
   }
 
   createPost(content) {
@@ -54,6 +55,10 @@ class App extends Component {
     }))
   }
 
+  clapOnce(postId) {
+    console.log(postId, this.state.user.firstName)
+  }
+
   render() {
     return (
       <div className="App">
@@ -63,7 +68,10 @@ class App extends Component {
           profileImage={this.state.user.profileImage}
         />
         <InputTextField createPost={this.createPost} />
-        <PostFeed posts={this.state.posts} />
+        <PostFeed
+          posts={this.state.posts}
+          clapOnce={this.clapOnce}
+        />
       </div>
     )
   }
