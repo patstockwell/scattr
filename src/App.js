@@ -5,6 +5,7 @@ import profileImage from './assets/profile-picture.png'
 import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
 import { charcoal } from './utilities/constants'
+import InputTextField from './components/InputTextField'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
 
@@ -25,7 +26,6 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      inputFieldValue: '',
       posts: samplePosts,
       user: {
         firstName: 'Patrick',
@@ -33,34 +33,24 @@ class App extends Component {
         profileImage,
       }
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleInput = this.handleInput.bind(this)
+    this.createPost = this.createPost.bind(this)
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
+  createPost(content) {
     const newPost = {
       id: 234234285,
       firstName: this.state.user.firstName,
       lastName: this.state.user.lastName,
       profileImage: this.state.user.profileImage,
-      postContent: this.state.inputFieldValue,
+      postContent: content,
       claps: 0,
       comments: [],
       tags: [],
     }
 
     this.setState(prevState => ({
-      inputFieldValue: '', // reset input field
       posts: [newPost, ...prevState.posts],
     }))
-  }
-
-  handleInput(event) {
-    event.preventDefault()
-    this.setState({
-      inputFieldValue: event.target.value,
-    })
   }
 
   render() {
@@ -68,10 +58,7 @@ class App extends Component {
       <div className="App">
         <Head />
         <h2>Scattr</h2>
-        <form onSubmit={this.handleSubmit} >
-          <input type="text" value={this.state.inputFieldValue} onChange={this.handleInput} />
-          <input type="submit" value="Post" />
-        </form>
+        <InputTextField createPost={this.createPost} />
         <PostFeed posts={this.state.posts} />
       </div>
     )
