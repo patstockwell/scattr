@@ -6,6 +6,7 @@ import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
 import { charcoal } from './utilities/constants'
 import InputTextField from './components/InputTextField'
+import NavBar from './components/NavBar'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
 
@@ -57,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <Head />
-        <h2>Scattr</h2>
+        <NavBar />
         <InputTextField createPost={this.createPost} />
         <PostFeed posts={this.state.posts} />
       </div>
