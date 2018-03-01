@@ -58,7 +58,10 @@ class App extends Component {
     return (
       <div className="App">
         <Head />
-        <NavBar />
+        <NavBar
+          firstName={this.state.user.firstName}
+          profileImage={this.state.user.profileImage}
+        />
         <InputTextField createPost={this.createPost} />
         <PostFeed posts={this.state.posts} />
       </div>
