@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Post from './Post'
+import random from '../utilities/random'
 
 const FeedWrapper = styled.div`
   max-width: 600px;
@@ -11,7 +12,7 @@ const FeedWrapper = styled.div`
 const PostFeed = (props) => {
   const posts = props.posts.map(post => (
     <Post
-      key={post.id}
+      key={random()}
       firstName={post.firstName}
       lastName={post.lastName}
       profileImage={post.profileImage}
