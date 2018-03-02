@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Clap from './Clap'
 import SpeechBubble from './SpeechBubble'
-import { steelyBlue, salmon } from '../../utilities/constants'
+import { steelyBlue, royalPurple } from '../../utilities/constants'
 
 const Icon = styled.div`
   display: inline-block;
@@ -15,9 +15,11 @@ const ItemPair = styled.div`
   display: inline-block;
   color: ${steelyBlue};
   fill: currentColor;
+  -o-user-select: none;
+  user-select: none;
 
   &:hover {
-    color: ${salmon};
+    color: ${royalPurple};
   }
 `
 
@@ -27,34 +29,44 @@ const NumberCount = styled.span`
   font-size: 12px;
 `
 
-
-const PostActions = (props) => {
-  const clap = () => {
-    props.clapOnce(123)
+class PostActions extends Component {
+  constructor() {
+    super()
+    this.state = {
+      claps: 0,
+    }
+    this.clap = this.clap.bind(this)
   }
 
-  return (
-    <div>
-      <ItemPair onClick={clap}>
-        <Icon>
-          <Clap />
-        </Icon>
-        <NumberCount>{props.claps}</NumberCount>
-      </ItemPair>
-      <ItemPair>
-        <Icon>
-          <SpeechBubble />
-        </Icon>
-        <NumberCount>{props.commentCount}</NumberCount>
-      </ItemPair>
-    </div>
-  )
+  clap() {
+    this.setState(prevState => ({
+      claps: (prevState.claps + 1)
+    }))
+  }
+
+  render() {
+    return (
+      <div>
+        <ItemPair onClick={this.clap}>
+          <Icon>
+            <Clap />
+          </Icon>
+          <NumberCount>{this.props.claps + this.state.claps}</NumberCount>
+        </ItemPair>
+        <ItemPair>
+          <Icon>
+            <SpeechBubble />
+          </Icon>
+          <NumberCount>{this.props.commentCount}</NumberCount>
+        </ItemPair>
+      </div>
+    )
+  }
 }
 
 PostActions.propTypes = {
   claps: PropTypes.number.isRequired,
   commentCount: PropTypes.number.isRequired,
-  clapOnce: PropTypes.func.isRequired
 }
 
 export default PostActions
