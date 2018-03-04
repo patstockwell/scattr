@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { salmon } from '../utilities/constants'
+import { salmon, papayawhip, royalPurple } from '../utilities/constants'
 
 const List = styled.div`
   margin: 6px 0px;
@@ -15,7 +15,12 @@ const Tag = styled.a`
   margin: 0 2px;
   padding: 2px 6px 3px;
   border-radius: 3px;
-  background-color: papayawhip;
+  background-color: ${papayawhip};
+
+  &:hover,
+  &:active {
+    color: ${royalPurple}
+  }
 `
 
 const TagList = props => (

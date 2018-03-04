@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { hoverSuperLightGrey, lightGrey, seaGreen } from '../utilities/constants'
+import { hoverSuperLightGrey, lightGrey, seaGreen } from '../../utilities/constants'
 
 const TextInput = styled.input`
     outline: none;
@@ -16,6 +16,9 @@ const TextInput = styled.input`
     border: 1px solid ${lightGrey};
     padding: 8px 12px;
 `
+
+// refactor this component into parts
+// create a tag input element (stackoverflow)
 
 const SubmitButton = styled.input`
     outline: none;
@@ -34,7 +37,7 @@ const FormWrapper = styled.div`
   margin: 0 auto;
 `
 
-class InputTextField extends Component {
+class InputFields extends Component {
   constructor() {
     super()
     this.state = {
@@ -76,8 +79,8 @@ class InputTextField extends Component {
   }
 }
 
-InputTextField.propTypes = {
+InputFields.propTypes = {
   createPost: PropTypes.func.isRequired,
 }
 
-export default InputTextField
+export default InputFields

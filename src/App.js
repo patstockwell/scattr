@@ -5,7 +5,7 @@ import profileImage from './assets/profile-picture.png'
 import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
 import { charcoal } from './utilities/constants'
-import InputTextField from './components/InputTextField'
+import InputTextField from './components/input-fields/InputFields'
 import NavBar from './components/NavBar'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
