@@ -20,7 +20,6 @@ const PostFeed = (props) => {
       claps={post.claps}
       comments={post.comments}
       tags={post.tags}
-      clapOnce={props.clapOnce}
     />
   ))
 
@@ -33,7 +32,6 @@ const PostFeed = (props) => {
 
 PostFeed.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  clapOnce: PropTypes.func.isRequired
 }
 
 export default PostFeed

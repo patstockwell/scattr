@@ -7,7 +7,7 @@ const List = styled.div`
   margin: 6px 0px;
 `
 
-const Tag = styled.a`
+export const Tag = styled.a`
   font-size: 10px;
   color: ${salmon};
   -webkit-text-decoration: none;

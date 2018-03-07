@@ -66,7 +66,6 @@ const Post = props => (
       <PostActions
         commentCount={props.comments.length}
         claps={props.claps}
-        clapOnce={props.clapOnce}
       />
     </NameAndContent>
   </PostTile>
@@ -80,7 +79,6 @@ Post.propTypes = {
   claps: PropTypes.number.isRequired,
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-  clapOnce: PropTypes.func.isRequired
 }
 
 export default Post

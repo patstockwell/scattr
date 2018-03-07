@@ -5,7 +5,7 @@ import profileImage from './assets/profile-picture.png'
 import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
 import { charcoal } from './utilities/constants'
-import InputTextField from './components/input-fields/InputFields'
+import InputBlock from './components/input-block/InputBlock'
 import NavBar from './components/NavBar'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
@@ -35,10 +35,9 @@ class App extends Component {
       }
     }
     this.createPost = this.createPost.bind(this)
-    this.clapOnce = this.clapOnce.bind(this)
   }
 
-  createPost(content) {
+  createPost(content, tags) {
     const newPost = {
       id: 234234285,
       firstName: this.state.user.firstName,
@@ -47,16 +46,12 @@ class App extends Component {
       postContent: content,
       claps: 0,
       comments: [],
-      tags: [],
+      tags: (tags || []),
     }
 
     this.setState(prevState => ({
       posts: [newPost, ...prevState.posts],
     }))
-  }
-
-  clapOnce(postId) {
-    console.log(postId, this.state.user.firstName)
   }
 
   render() {
@@ -67,10 +62,9 @@ class App extends Component {
           firstName={this.state.user.firstName}
           profileImage={this.state.user.profileImage}
         />
-        <InputTextField createPost={this.createPost} />
+        <InputBlock createPost={this.createPost} />
         <PostFeed
           posts={this.state.posts}
-          clapOnce={this.clapOnce}
         />
       </div>
     )
