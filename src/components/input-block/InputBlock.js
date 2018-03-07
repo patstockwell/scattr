@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { lightGrey, seaGreen } from '../../utilities/constants'
+import { lightGrey, seaGreen, hoverSuperLightGrey } from '../../utilities/constants'
 import NewPostField from './NewPostField'
 import TagsField from './TagsField'
 import { Tag } from '../TagList'
@@ -26,6 +26,24 @@ const FormWrapper = styled.div`
   margin: 0 auto;
 `
 
+const TagsBlock = styled.div`
+  background-color: ${hoverSuperLightGrey};
+  border-radius: 5px;
+  font-size: 12px;
+  min-height: 32px;
+  line-height: 16px;
+  width: 300px;
+  border: 1px solid ${lightGrey};
+  padding: 8px 12px;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+`
+
+const TagWrapper = styled.p`
+  margin: 4px 0px;
+`
+
 class InputBlock extends Component {
   constructor() {
     super()
@@ -43,13 +61,20 @@ class InputBlock extends Component {
     event.preventDefault()
     const newTag = event.target.value
     const lastLetter = event.target.value.slice(-1)
-    if (lastLetter === ' ') {
+    if (lastLetter === ' ' && event.target.value.length === 1) {
+      // reset input when only white space
+      this.setState({
+        tagsInputFieldValue: '',
+      })
+    } else if (lastLetter === ' ') {
+      // save new word and reset
       this.setState(prevState => ({
-        tagsInputFieldValue: '', // clear input field
+        tagsInputFieldValue: '',
         tags: [...prevState.tags, newTag]
       }))
     } else {
       this.setState({
+        // update input field
         tagsInputFieldValue: event.target.value,
       })
     }
@@ -75,8 +100,12 @@ class InputBlock extends Component {
   }
 
   render() {
+    const placeholderText = 'Tags'
+    const placeholder = this.state.tags.length > 0 ? '' : placeholderText
     const tags = this.state.tags.map(tag => (
-      <Tag>{tag}</Tag>
+      <TagWrapper>
+        <Tag>{tag}</Tag>
+      </TagWrapper>
     ))
     return (
       <FormWrapper>
@@ -85,12 +114,15 @@ class InputBlock extends Component {
             postInputFieldValue={this.state.postInputFieldValue}
             handlePostInput={this.handlePostInput}
           />
-          <TagsField
-            tags={this.state.tags}
-            tagsInputFieldValue={this.state.tagsInputFieldValue}
-            handleTagsInput={this.handleTagsInput}
-          />
-          {tags}
+          <TagsBlock>
+            {tags}
+            <TagsField
+              tags={this.state.tags}
+              tagsInputFieldValue={this.state.tagsInputFieldValue}
+              handleTagsInput={this.handleTagsInput}
+              placeholder={placeholder}
+            />
+          </TagsBlock>
           <SubmitButton type="submit" value="Post" />
         </form>
       </FormWrapper>

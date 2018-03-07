@@ -12,9 +12,10 @@ const TextInput = styled.input`
     font-size: 12px;
     height: 32px;
     line-height: 16px;
-    width: 300px;
+    width: 292px;
     border: 1px solid ${lightGrey};
-    padding: 8px 12px;
+    padding: 8px 16px;
+    margin: 10px 0;
 `
 
 const NewPostField = props => (
