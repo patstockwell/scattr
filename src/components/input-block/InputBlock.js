@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { lightGrey, seaGreen } from '../../utilities/constants'
 import NewPostField from './NewPostField'
 import TagsField from './TagsField'
+import { Tag } from '../TagList'
 
 // refactor this component into parts
 // create a tag input element (stackoverflow)
@@ -64,14 +65,19 @@ class InputBlock extends Component {
   handleSubmit(event) {
     // handle input when empty?
     event.preventDefault()
+    // clear state
     this.setState({
-      postInputFieldValue: '', // clear input field
-      tagsInputFieldValue: '', // clear input field
+      postInputFieldValue: '',
+      tagsInputFieldValue: '',
+      tags: [],
     })
     this.props.createPost(this.state.postInputFieldValue, this.state.tags)
   }
 
   render() {
+    const tags = this.state.tags.map(tag => (
+      <Tag>{tag}</Tag>
+    ))
     return (
       <FormWrapper>
         <form onSubmit={this.handleSubmit} >
@@ -84,6 +90,7 @@ class InputBlock extends Component {
             tagsInputFieldValue={this.state.tagsInputFieldValue}
             handleTagsInput={this.handleTagsInput}
           />
+          {tags}
           <SubmitButton type="submit" value="Post" />
         </form>
       </FormWrapper>

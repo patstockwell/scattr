@@ -19,6 +19,7 @@ const TextInput = styled.input`
 
 const NewPostField = props => (
   <TextInput
+    required
     type="text"
     value={props.postInputFieldValue}
     onChange={props.handlePostInput}
