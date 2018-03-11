@@ -18,7 +18,7 @@ const TextInput = styled.input`
     margin: 10px 0;
 `
 
-const NewPostField = props => (
+const ContentField = props => (
   <TextInput
     required
     type="text"
@@ -28,9 +28,9 @@ const NewPostField = props => (
   />
 )
 
-NewPostField.propTypes = {
+ContentField.propTypes = {
   postInputFieldValue: PropTypes.string.isRequired,
   handlePostInput: PropTypes.func.isRequired,
 }
 
-export default NewPostField
+export default ContentField

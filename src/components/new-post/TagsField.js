@@ -13,16 +13,11 @@ const TextInput = styled.input`
     padding: 9px 4px;
 `
 
-// check to see if the tag has already been added
-// create function for removing tags from the list
-// stop the form from submitting if there is missing input
-// add tagInput as a tag when form submits
 const TagsField = props => (
   <TextInput
     type="text"
     value={props.tagsInputFieldValue}
     onChange={props.handleTagsInput}
-    // placeholder="Add some tags, eg. 'decision-making', or 'REAio#30'"
     placeholder={props.placeholder}
   />
 )
