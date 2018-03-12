@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { lightGrey, seaGreen, hoverSuperLightGrey } from '../../utilities/constants'
+import TagsBlock from './TagsBlock'
+import { lightGrey, seaGreen } from '../../utilities/constants'
 import ContentField from './ContentField'
-import TagsField from './TagsField'
-import { Tag } from '../TagList'
 
 // refactor this component into parts
 // create a tag input element (stackoverflow)
@@ -26,24 +25,6 @@ const FormWrapper = styled.div`
   margin: 0 auto;
 `
 
-const TagsBlock = styled.div`
-  background-color: ${hoverSuperLightGrey};
-  border-radius: 5px;
-  font-size: 12px;
-  min-height: 32px;
-  line-height: 16px;
-  width: 300px;
-  border: 1px solid ${lightGrey};
-  padding: 8px 12px;
-  display: flex;
-  flex-flow: wrap;
-  align-items: center;
-`
-
-const TagWrapper = styled.p`
-  margin: 4px 0px;
-`
-
 class NewPost extends Component {
   constructor() {
     super()
@@ -59,22 +40,22 @@ class NewPost extends Component {
 
   handleTagsInput(event) {
     event.preventDefault()
-    const newTag = event.target.value
+    const newTagList = event.target.value.trim().split(' ')
     const lastLetter = event.target.value.slice(-1)
     if (lastLetter === ' ' && event.target.value.length === 1) {
-      // reset input when only white space
+      // reset input when nothing but white space
       this.setState({
         tagsInputFieldValue: '',
       })
     } else if (lastLetter === ' ') {
-      // save new word and reset
+      // add finished word to set
       this.setState(prevState => ({
         tagsInputFieldValue: '',
-        tags: [...prevState.tags, newTag]
+        tags: [...prevState.tags, ...newTagList]
       }))
     } else {
+      // continue adding letters
       this.setState({
-        // update input field
         tagsInputFieldValue: event.target.value,
       })
     }
@@ -88,8 +69,8 @@ class NewPost extends Component {
   }
 
   handleSubmit(event) {
-    // handle input when empty?
     event.preventDefault()
+    // handle input when empty?
     // clear state
     this.setState({
       postInputFieldValue: '',
@@ -100,13 +81,6 @@ class NewPost extends Component {
   }
 
   render() {
-    const placeholderText = 'Tags'
-    const placeholder = this.state.tags.length > 0 ? '' : placeholderText
-    const tags = this.state.tags.map(tag => (
-      <TagWrapper>
-        <Tag>{tag}</Tag>
-      </TagWrapper>
-    ))
     return (
       <FormWrapper>
         <form onSubmit={this.handleSubmit} >
@@ -114,15 +88,11 @@ class NewPost extends Component {
             postInputFieldValue={this.state.postInputFieldValue}
             handlePostInput={this.handlePostInput}
           />
-          <TagsBlock>
-            {tags}
-            <TagsField
-              tags={this.state.tags}
-              tagsInputFieldValue={this.state.tagsInputFieldValue}
-              handleTagsInput={this.handleTagsInput}
-              placeholder={placeholder}
-            />
-          </TagsBlock>
+          <TagsBlock
+            tags={this.state.tags}
+            tagsInputFieldValue={this.state.tagsInputFieldValue}
+            handleTagsInput={this.handleTagsInput}
+          />
           <SubmitButton type="submit" value="Post" />
         </form>
       </FormWrapper>
