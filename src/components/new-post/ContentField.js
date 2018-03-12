@@ -11,11 +11,13 @@ const TextInput = styled.textarea`
     display: block;
     font-size: 12px;
     height: 140px;
+    width: 600px;
+    box-sizing: border-box;
     line-height: 16px;
-    width: 292px;
     border: 1px solid ${lightGrey};
     padding: 14px 16px;
     margin: 10px 0;
+    resize: vertical;
 `
 
 const ContentField = props => (

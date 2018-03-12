@@ -18,6 +18,8 @@ const InputWrapper = styled.div`
   display: flex;
   flex-flow: wrap;
   align-items: center;
+  width: 600px;
+  box-sizing: border-box;
 `
 
 const TagWrapper = styled.div`
