@@ -11,6 +11,8 @@ const TextInput = styled.input`
     line-height: 16px;
     border: transparent;
     padding: 9px 4px;
+    flex-grow: 1;
+    width: 40px;
 `
 
 const TagsField = props => (
