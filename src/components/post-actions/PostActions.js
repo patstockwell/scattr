@@ -12,7 +12,8 @@ const Icon = styled.div`
 
 const ItemPair = styled.div`
   width: 80px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   color: ${steelyBlue};
   fill: currentColor;
   -o-user-select: none;

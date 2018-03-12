@@ -18,7 +18,7 @@ export const Tag = styled.a`
 `
 
 const TagWithHover = Tag.extend`
-  margin: 0 2px;
+  margin: 0 4px 0 0;
 
   &:hover,
   &:active {
