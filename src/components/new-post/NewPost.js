@@ -31,9 +31,9 @@ class NewPost extends Component {
     this.state = {
       postInputFieldValue: '',
       tagsInputFieldValue: '',
-      tags: [],
+      tags: new Set(),
     }
-    this.handlePostInput = this.handlePostInput.bind(this)
+    this.handleContentInput = this.handleContentInput.bind(this)
     this.handleTagsInput = this.handleTagsInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -49,10 +49,16 @@ class NewPost extends Component {
       })
     } else if (lastLetter === ' ') {
       // add finished word to set
-      this.setState(prevState => ({
-        tagsInputFieldValue: '',
-        tags: [...prevState.tags, ...newTagList]
-      }))
+      this.setState((prevState) => {
+        const { tags } = prevState
+        for (let x = 0; x < newTagList.length; x += 1) {
+          tags.add(newTagList[x])
+        }
+        return {
+          tagsInputFieldValue: '',
+          tags,
+        }
+      })
     } else {
       // continue adding letters
       this.setState({
@@ -61,7 +67,7 @@ class NewPost extends Component {
     }
   }
 
-  handlePostInput(event) {
+  handleContentInput(event) {
     event.preventDefault()
     this.setState({
       postInputFieldValue: event.target.value,
@@ -72,12 +78,13 @@ class NewPost extends Component {
     event.preventDefault()
     // handle input when empty?
     // clear state
+    this.props.createPost(this.state.postInputFieldValue, Array.from(this.state.tags))
     this.setState({
       postInputFieldValue: '',
       tagsInputFieldValue: '',
-      tags: [],
+      tags: new Set(),
     })
-    this.props.createPost(this.state.postInputFieldValue, this.state.tags)
+    // focus on input
   }
 
   render() {
@@ -86,10 +93,10 @@ class NewPost extends Component {
         <form onSubmit={this.handleSubmit} >
           <ContentField
             postInputFieldValue={this.state.postInputFieldValue}
-            handlePostInput={this.handlePostInput}
+            handleContentInput={this.handleContentInput}
           />
           <TagsBlock
-            tags={this.state.tags}
+            tags={Array.from(this.state.tags)}
             tagsInputFieldValue={this.state.tagsInputFieldValue}
             handleTagsInput={this.handleTagsInput}
           />

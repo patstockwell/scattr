@@ -23,14 +23,14 @@ const ContentField = props => (
     required
     type="text"
     value={props.postInputFieldValue}
-    onChange={props.handlePostInput}
+    onChange={props.handleContentInput}
     placeholder="Plant an idea..."
   />
 )
 
 ContentField.propTypes = {
   postInputFieldValue: PropTypes.string.isRequired,
-  handlePostInput: PropTypes.func.isRequired,
+  handleContentInput: PropTypes.func.isRequired,
 }
 
 export default ContentField
