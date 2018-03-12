@@ -1,4 +1,5 @@
 export const charcoal = '#3D3D3D'
+export const midGrey = '#999'
 export const lightGrey = '#e6ecf0'
 export const hoverSuperLightGrey = '#F7F9F9'
 export const steelyBlue = '#4c5a66'

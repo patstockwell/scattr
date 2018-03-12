@@ -22,14 +22,14 @@ const ContentField = props => (
   <TextInput
     required
     type="text"
-    value={props.postInputFieldValue}
+    value={props.contentInputFieldValue}
     onChange={props.handleContentInput}
     placeholder="Plant an idea..."
   />
 )
 
 ContentField.propTypes = {
-  postInputFieldValue: PropTypes.string.isRequired,
+  contentInputFieldValue: PropTypes.string.isRequired,
   handleContentInput: PropTypes.func.isRequired,
 }
 

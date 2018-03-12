@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import TagsField from './TagsField'
+import XRemoveIcon from './XRemoveIcon'
 import { Tag } from '../TagList'
-import { hoverSuperLightGrey, lightGrey } from '../../utilities/constants'
+import { hoverSuperLightGrey, lightGrey, midGrey } from '../../utilities/constants'
 
 const InputWrapper = styled.div`
   background-color: ${hoverSuperLightGrey};
@@ -19,9 +20,20 @@ const InputWrapper = styled.div`
   align-items: center;
 `
 
-const TagWrapper = styled.p`
-  margin: 4px 0px;
+const TagWrapper = styled.div`
+  display: flex;
+  margin: 4px;
+  fill: ${midGrey};
+  cursor: default;
 `
+
+const XRemoveIconWrapper = styled.div`
+  width: 9px;
+  margin-top: 3px;
+  margin-left: 2px;
+  cursor: pointer;
+`
+
 
 const TagsBlock = (props) => {
   const placeholderText = 'Tags'
@@ -31,6 +43,9 @@ const TagsBlock = (props) => {
       <Tag >
         {tag}
       </Tag>
+      <XRemoveIconWrapper onClick={() => { props.removeTag(tag) }}>
+        <XRemoveIcon />
+      </XRemoveIconWrapper>
     </TagWrapper>
   ))
   return (

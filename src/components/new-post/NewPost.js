@@ -5,9 +5,6 @@ import TagsBlock from './TagsBlock'
 import { lightGrey, seaGreen } from '../../utilities/constants'
 import ContentField from './ContentField'
 
-// refactor this component into parts
-// create a tag input element (stackoverflow)
-
 const SubmitButton = styled.input`
     outline: none;
     background-color: ${seaGreen};
@@ -29,13 +26,14 @@ class NewPost extends Component {
   constructor() {
     super()
     this.state = {
-      postInputFieldValue: '',
+      contentInputFieldValue: '',
       tagsInputFieldValue: '',
       tags: new Set(),
     }
     this.handleContentInput = this.handleContentInput.bind(this)
     this.handleTagsInput = this.handleTagsInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.removeTag = this.removeTag.bind(this)
   }
 
   handleTagsInput(event) {
@@ -70,21 +68,29 @@ class NewPost extends Component {
   handleContentInput(event) {
     event.preventDefault()
     this.setState({
-      postInputFieldValue: event.target.value,
+      contentInputFieldValue: event.target.value,
     })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    // handle input when empty?
     // clear state
-    this.props.createPost(this.state.postInputFieldValue, Array.from(this.state.tags))
+    this.props.createPost(this.state.contentInputFieldValue, Array.from(this.state.tags))
     this.setState({
-      postInputFieldValue: '',
+      contentInputFieldValue: '',
       tagsInputFieldValue: '',
       tags: new Set(),
     })
-    // focus on input
+  }
+
+  removeTag(tag) {
+    this.setState((prevState) => {
+      const { tags } = prevState
+      tags.delete(tag)
+      return {
+        tags,
+      }
+    })
   }
 
   render() {
@@ -92,13 +98,14 @@ class NewPost extends Component {
       <FormWrapper>
         <form onSubmit={this.handleSubmit} >
           <ContentField
-            postInputFieldValue={this.state.postInputFieldValue}
+            contentInputFieldValue={this.state.contentInputFieldValue}
             handleContentInput={this.handleContentInput}
           />
           <TagsBlock
             tags={Array.from(this.state.tags)}
             tagsInputFieldValue={this.state.tagsInputFieldValue}
             handleTagsInput={this.handleTagsInput}
+            removeTag={this.removeTag}
           />
           <SubmitButton type="submit" value="Post" />
         </form>

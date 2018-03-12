@@ -12,10 +12,13 @@ export const Tag = styled.a`
   color: ${salmon};
   -webkit-text-decoration: none;
   text-decoration: none;
-  margin: 0 2px;
   padding: 2px 6px 3px;
   border-radius: 3px;
   background-color: ${papayawhip};
+`
+
+const TagWithHover = Tag.extend`
+  margin: 0 2px;
 
   &:hover,
   &:active {
@@ -26,7 +29,7 @@ export const Tag = styled.a`
 const TagList = props => (
   <List>
     {props.tags.map(tag => (
-      <Tag href={`#${tag}`} key={tag}>{tag}</Tag>
+      <TagWithHover href={`#${tag}`} key={tag}>{tag}</TagWithHover>
     ))}
   </List>
 )
