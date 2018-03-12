@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { hoverSuperLightGrey, lightGrey } from '../../utilities/constants'
 
-const TextInput = styled.input`
+const TextInput = styled.textarea`
     outline: none;
     background-color: ${hoverSuperLightGrey};
     border-radius: 5px;
     color: #14171a;
     display: block;
     font-size: 12px;
-    height: 32px;
+    height: 140px;
     line-height: 16px;
     width: 292px;
     border: 1px solid ${lightGrey};
-    padding: 8px 16px;
+    padding: 14px 16px;
     margin: 10px 0;
 `
 

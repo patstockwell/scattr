@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import ReactMarkdown from 'react-markdown'
 import PostActions from './post-actions/PostActions'
 import TagList from './TagList'
 import { hoverSuperLightGrey, lightGrey, boxShadow } from '../utilities/constants'
@@ -41,19 +42,17 @@ const ProfileImage = styled.img`
   position: absolute;
 `
 
-const Text = styled.p`
+const Name = styled.p`
   text-overflow: ellipsis;
   line-height: 20px;
   margin: 10px 0 0 0;
-`
-
-const Content = Text.extend`
-  font-size: 14px;
-`
-
-const Name = Text.extend`
   font-size: 15px;
   font-weight: bold;
+`
+
+const MarkDownWrapper = styled.div`
+  font-size: 0.8em;
+  overflow-x: scroll;
 `
 
 const Post = props => (
@@ -61,7 +60,9 @@ const Post = props => (
     <NameAndContent>
       <ProfileImage src={props.profileImage} alt={`${props.firstName} ${props.lastName}`} />
       <Name>{`${props.firstName} ${props.lastName}`}</Name>
-      <Content>{props.postContent}</Content>
+      <MarkDownWrapper>
+        <ReactMarkdown source={props.postContent} />
+      </MarkDownWrapper>
       <TagList tags={props.tags} />
       <PostActions
         commentCount={props.comments.length}
