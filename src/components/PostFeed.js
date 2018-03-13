@@ -20,6 +20,7 @@ const PostFeed = (props) => {
       claps={post.claps}
       comments={post.comments}
       tags={post.tags}
+      timestamp={post.timestamp}
     />
   ))
 

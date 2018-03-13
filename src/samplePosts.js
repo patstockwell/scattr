@@ -14,6 +14,7 @@ const sampleComments2 = [
 const samplePosts = [
   {
     id: 234234274,
+    timestamp: 1520922244344,
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
@@ -24,6 +25,7 @@ const samplePosts = [
   },
   {
     id: 234234275,
+    timestamp: 1520921244344,
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
@@ -34,6 +36,7 @@ const samplePosts = [
   },
   {
     id: 234234276,
+    timestamp: 1520920244344,
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,

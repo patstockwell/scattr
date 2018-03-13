@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import moment from 'moment'
 import ReactMarkdown from 'react-markdown'
 import PostActions from './post-actions/PostActions'
 import TagList from './TagList'
@@ -56,6 +57,11 @@ const FlexDiv = styled.div`
   min-width: 200px;
 `
 
+const Time = styled.p`
+  margin: 0 10px;
+  font-size: 13px;
+`
+
 const Post = props => (
   <PostTile href="">
     <NameAndContent>
@@ -67,6 +73,7 @@ const Post = props => (
         <FlexDiv>
           <ProfileImage src={props.profileImage} alt={`${props.firstName} ${props.lastName}`} />
           <Name>{`by ${props.firstName} ${props.lastName}`}</Name>
+          <Time>{moment(props.timestamp).fromNow()}</Time>
         </FlexDiv>
         <PostActions
           commentCount={props.comments.length}
@@ -85,6 +92,8 @@ Post.propTypes = {
   claps: PropTypes.number.isRequired,
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  timestamp: PropTypes.number.isRequired,
+
 }
 
 export default Post

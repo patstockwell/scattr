@@ -40,6 +40,7 @@ class App extends Component {
   createPost(content, tags) {
     const newPost = {
       id: 234234285,
+      timestamp: Date.now(),
       firstName: this.state.user.firstName,
       lastName: this.state.user.lastName,
       profileImage: this.state.user.profileImage,

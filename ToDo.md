@@ -10,6 +10,8 @@
 - Add unique post page
 - Add update post functionality
 - add delete post functionality
+- refactor Post - extract and create postDetail component
+- design for mobile view (post detail)
 
 ## Tags
 - style popup window for missing form input
