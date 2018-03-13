@@ -10,7 +10,6 @@
 - Add unique post page
 - Add update post functionality
 - add delete post functionality
-- refactor Post - extract and create postDetail component
 - design for mobile view (post detail)
 
 ## Tags
@@ -24,3 +23,5 @@
 - check tag input for spaces and split the tags when adding (no spaces)
 - check to see if the tag has already been added (no repeated tags)
 - move tagblock to its own component
+- refactor Post - extract and create postDetail component
+- add timestamps to posts

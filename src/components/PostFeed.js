@@ -13,14 +13,7 @@ const PostFeed = (props) => {
   const posts = props.posts.map(post => (
     <Post
       key={crypto.randomBytes(256)}
-      firstName={post.firstName}
-      lastName={post.lastName}
-      profileImage={post.profileImage}
-      postContent={post.postContent}
-      claps={post.claps}
-      comments={post.comments}
-      tags={post.tags}
-      timestamp={post.timestamp}
+      {...post}
     />
   ))
 
