@@ -9,8 +9,8 @@ const FeedWrapper = styled.div`
   margin: 0 auto;
 `
 
-const PostFeed = (props) => {
-  const posts = props.posts.map(post => (
+const PostFeed = ({ posts }) => {
+  const renderedPosts = posts.map(post => (
     <Post
       key={crypto.randomBytes(256)}
       {...post}
@@ -19,7 +19,7 @@ const PostFeed = (props) => {
 
   return (
     <FeedWrapper>
-      {posts}
+      {renderedPosts}
     </FeedWrapper>
   )
 }

@@ -37,12 +37,12 @@ const LoggedIn = styled.div`
   }
 `
 
-const NavBar = props => (
+const NavBar = ({ firstName, profileImage }) => (
   <Bar>
     <Name>Scattr</Name>
     <LoggedIn>
-      <p>{props.firstName}</p>
-      <ProfileImage src={props.profileImage} alt={props.firstName} />
+      <p>{firstName}</p>
+      <ProfileImage src={profileImage} alt={firstName} />
     </LoggedIn>
   </Bar>
 )

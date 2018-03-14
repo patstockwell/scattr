@@ -29,16 +29,23 @@ const ProfileImage = styled.img`
   width: 100%;
 `
 
-const PostDetails = props => (
+const PostDetails = ({
+  profileImage,
+  firstName,
+  lastName,
+  timestamp,
+  comments,
+  claps,
+}) => (
   <FlexDiv>
     <FlexDiv>
-      <ProfileImage src={props.profileImage} alt={`${props.firstName} ${props.lastName}`} />
-      <Name>{`by ${props.firstName} ${props.lastName}`}</Name>
-      <Time>{moment(props.timestamp).fromNow()}</Time>
+      <ProfileImage src={profileImage} alt={`${firstName} ${lastName}`} />
+      <Name>{`by ${firstName} ${lastName}`}</Name>
+      <Time>{moment(timestamp).fromNow()}</Time>
     </FlexDiv>
     <PostActions
-      commentCount={props.comments.length}
-      claps={props.claps}
+      commentCount={comments.length}
+      claps={claps}
     />
   </FlexDiv>
 )

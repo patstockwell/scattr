@@ -15,12 +15,12 @@ const TextInput = styled.input`
     width: 40px;
 `
 
-const TagsField = props => (
+const TagsField = ({ tagsInputFieldValue, handleTagsInput, placeholder }) => (
   <TextInput
     type="text"
-    value={props.tagsInputFieldValue}
-    onChange={props.handleTagsInput}
-    placeholder={props.placeholder}
+    value={tagsInputFieldValue}
+    onChange={handleTagsInput}
+    placeholder={placeholder}
   />
 )
 

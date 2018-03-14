@@ -37,26 +37,31 @@ const XRemoveIconWrapper = styled.div`
 `
 
 
-const TagsBlock = (props) => {
+const TagsBlock = ({
+  removeTag,
+  tags,
+  tagsInputFieldValue,
+  handleTagsInput,
+}) => {
   const placeholderText = 'Tags'
-  const placeholder = props.tags.length > 0 ? '' : placeholderText
-  const tags = props.tags.map(tag => (
+  const placeholder = tags.length > 0 ? '' : placeholderText
+  const renderedTags = tags.map(tag => (
     <TagWrapper key={tag} >
       <Tag >
         {tag}
       </Tag>
-      <XRemoveIconWrapper onClick={() => { props.removeTag(tag) }}>
+      <XRemoveIconWrapper onClick={() => { removeTag(tag) }}>
         <XRemoveIcon />
       </XRemoveIconWrapper>
     </TagWrapper>
   ))
   return (
     <InputWrapper>
-      {tags}
+      {renderedTags}
       <TagsField
-        tags={props.tags}
-        tagsInputFieldValue={props.tagsInputFieldValue}
-        handleTagsInput={props.handleTagsInput}
+        tags={tags}
+        tagsInputFieldValue={tagsInputFieldValue}
+        handleTagsInput={handleTagsInput}
         placeholder={placeholder}
       />
     </InputWrapper>
@@ -67,6 +72,7 @@ TagsBlock.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   tagsInputFieldValue: PropTypes.string.isRequired,
   handleTagsInput: PropTypes.func.isRequired,
+  removeTag: PropTypes.func.isRequired,
 }
 
 export default TagsBlock

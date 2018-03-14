@@ -26,9 +26,9 @@ const TagWithHover = Tag.extend`
   }
 `
 
-const TagList = props => (
+const TagList = ({ tags }) => (
   <List>
-    {props.tags.map(tag => (
+    {tags.map(tag => (
       <TagWithHover href={`#${tag}`} key={tag}>{tag}</TagWithHover>
     ))}
   </List>

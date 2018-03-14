@@ -20,12 +20,12 @@ const TextInput = styled.textarea`
     resize: vertical;
 `
 
-const ContentField = props => (
+const ContentField = ({ contentInputFieldValue, handleContentInput }) => (
   <TextInput
     required
     type="text"
-    value={props.contentInputFieldValue}
-    onChange={props.handleContentInput}
+    value={contentInputFieldValue}
+    onChange={handleContentInput}
     placeholder="Plant an idea..."
   />
 )
