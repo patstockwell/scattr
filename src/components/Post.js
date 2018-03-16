@@ -28,12 +28,21 @@ const PostTile = styled.div`
 `
 
 const PostContentAndDetails = styled.div`
-  margin-left: 10px;
+  margin: 0px 10px;
 `
 
+// these rules target the markdown content
+// they hide all but the first line of text.
 const MarkDownWrapper = styled.div`
   font-size: 0.8em;
   overflow-x: scroll;
+  p, h1, h2, h3, h4, h5, h6, li, a, pre, code {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    font-size: 14px;
+  }
 `
 
 const Post = props => (
