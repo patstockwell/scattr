@@ -15,19 +15,40 @@ const TextInput = styled.input`
     width: 40px;
 `
 
-const TagsField = ({ tagsInputFieldValue, handleTagsInput, placeholder }) => (
-  <TextInput
-    type="text"
-    value={tagsInputFieldValue}
-    onChange={handleTagsInput}
-    placeholder={placeholder}
-  />
-)
+const TagsField = ({
+  removeLastTag,
+  tagsInputFieldValue,
+  handleTagsInput,
+  placeholder,
+}) => {
+  const handleKeyDown = (event) => {
+    const backSpaceKeycode = 8
+    const keyPressed = event.keyCode
+    if (
+      keyPressed === backSpaceKeycode &&
+      !tagsInputFieldValue &&
+      !event.repeat
+    ) {
+      removeLastTag()
+    }
+  }
+
+  return (
+    <TextInput
+      type="text"
+      value={tagsInputFieldValue}
+      onChange={handleTagsInput}
+      placeholder={placeholder}
+      onKeyDown={handleKeyDown}
+    />
+  )
+}
 
 TagsField.propTypes = {
   tagsInputFieldValue: PropTypes.string.isRequired,
   handleTagsInput: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  removeLastTag: PropTypes.func.isRequired,
 }
 
 export default TagsField

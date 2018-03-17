@@ -28,12 +28,13 @@ class NewPost extends Component {
     this.state = {
       contentInputFieldValue: '',
       tagsInputFieldValue: '',
-      tags: new Set(),
+      tags: [],
     }
     this.handleContentInput = this.handleContentInput.bind(this)
     this.handleTagsInput = this.handleTagsInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.removeTag = this.removeTag.bind(this)
+    this.removeLastTag = this.removeLastTag.bind(this)
   }
 
   handleTagsInput(event) {
@@ -48,13 +49,13 @@ class NewPost extends Component {
     } else if (lastLetter === ' ') {
       // add finished word to set
       this.setState((prevState) => {
-        const { tags } = prevState
+        const tagSet = new Set(prevState.tags)
         for (let x = 0; x < newTagList.length; x += 1) {
-          tags.add(newTagList[x])
+          tagSet.add(newTagList[x])
         }
         return {
           tagsInputFieldValue: '',
-          tags,
+          tags: Array.from(tagSet),
         }
       })
     } else {
@@ -85,12 +86,20 @@ class NewPost extends Component {
 
   removeTag(tag) {
     this.setState((prevState) => {
-      const { tags } = prevState
-      tags.delete(tag)
+      const tagSet = new Set(prevState.tags)
+      tagSet.delete(tag)
       return {
-        tags,
+        tags: Array.from(tagSet)
       }
     })
+  }
+
+  removeLastTag() {
+    if (this.state.tags.length > 0) {
+      this.setState(prevState => ({
+        tags: prevState.tags.slice(0, -1)
+      }))
+    }
   }
 
   render() {
@@ -106,6 +115,7 @@ class NewPost extends Component {
             tagsInputFieldValue={this.state.tagsInputFieldValue}
             handleTagsInput={this.handleTagsInput}
             removeTag={this.removeTag}
+            removeLastTag={this.removeLastTag}
           />
           <SubmitButton type="submit" value="Post" />
         </form>

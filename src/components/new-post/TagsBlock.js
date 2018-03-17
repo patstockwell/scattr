@@ -42,6 +42,7 @@ const TagsBlock = ({
   tags,
   tagsInputFieldValue,
   handleTagsInput,
+  removeLastTag,
 }) => {
   const placeholderText = 'Tags'
   const placeholder = tags.length > 0 ? '' : placeholderText
@@ -63,6 +64,7 @@ const TagsBlock = ({
         tagsInputFieldValue={tagsInputFieldValue}
         handleTagsInput={handleTagsInput}
         placeholder={placeholder}
+        removeLastTag={removeLastTag}
       />
     </InputWrapper>
   )
@@ -73,6 +75,7 @@ TagsBlock.propTypes = {
   tagsInputFieldValue: PropTypes.string.isRequired,
   handleTagsInput: PropTypes.func.isRequired,
   removeTag: PropTypes.func.isRequired,
+  removeLastTag: PropTypes.func.isRequired,
 }
 
 export default TagsBlock
