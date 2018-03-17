@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import ReactMarkdown from 'react-markdown'
 import TagList from './TagList'
 import PostDetails from './PostDetails'
-import { hoverSuperLightGrey, lightGrey, boxShadow } from '../utilities/constants'
+import { lightGrey, boxShadow } from '../utilities/constants'
 
 const PostTile = styled.div`
   border: solid 1px ${lightGrey}; 
@@ -22,7 +22,6 @@ const PostTile = styled.div`
 
   &:hover,
   &:active {
-    background-color: ${hoverSuperLightGrey};
     box-shadow: 0px 5px 11px ${boxShadow};
   }
 `
@@ -46,7 +45,10 @@ const MarkDownWrapper = styled.div`
 `
 
 const Post = props => (
-  <PostTile href="">
+  <PostTile
+    href=""
+    onDragOver={() => {console.log('wooooo')}}
+  >
     <PostContentAndDetails>
       <MarkDownWrapper>
         <ReactMarkdown source={props.postContent} />
