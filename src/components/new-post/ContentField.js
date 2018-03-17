@@ -18,7 +18,7 @@ const TextInput = styled.textarea`
     padding: 14px 16px;
     margin: 10px 0;
     resize: vertical;
-    transition: ease-in-out 100ms all;
+    transition: ease-in-out 200ms all;
 `
 
 class ContentField extends Component {
@@ -28,6 +28,7 @@ class ContentField extends Component {
       focusTextArea: false,
     }
     this.onFocus = this.onFocus.bind(this)
+    this.onBlur = this.onBlur.bind(this)
   }
 
   onFocus() {
@@ -36,9 +37,16 @@ class ContentField extends Component {
     })
   }
 
+  onBlur() {
+    this.setState({
+      focusTextArea: false,
+    })
+  }
+
   render() {
     const { contentInputFieldValue, handleContentInput } = this.props
-    const style = this.state.focusTextArea ? { height: '140px' } : {}
+    const { focusTextArea } = this.state
+    const style = focusTextArea || contentInputFieldValue ? { height: '140px' } : { height: '50px' }
 
     return (
       <TextInput
@@ -49,6 +57,7 @@ class ContentField extends Component {
         onChange={handleContentInput}
         placeholder="Plant an idea..."
         onFocus={this.onFocus}
+        onBlur={this.onBlur}
       />
     )
   }
