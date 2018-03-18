@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import TagsField from './TagsField'
+import TagsInput from './TagsInput'
 import XRemoveIcon from './XRemoveIcon'
 import { Tag } from '../TagList'
 import { hoverSuperLightGrey, lightGrey, midGrey } from '../../utilities/constants'
@@ -37,7 +37,7 @@ const XRemoveIconWrapper = styled.div`
 `
 
 
-const TagsBlock = ({
+const TagsField = ({
   removeTag,
   tags,
   tagsInputFieldValue,
@@ -59,7 +59,7 @@ const TagsBlock = ({
   return (
     <InputWrapper>
       {renderedTags}
-      <TagsField
+      <TagsInput
         tags={tags}
         tagsInputFieldValue={tagsInputFieldValue}
         handleTagsInput={handleTagsInput}
@@ -70,7 +70,7 @@ const TagsBlock = ({
   )
 }
 
-TagsBlock.propTypes = {
+TagsField.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   tagsInputFieldValue: PropTypes.string.isRequired,
   handleTagsInput: PropTypes.func.isRequired,
@@ -78,4 +78,4 @@ TagsBlock.propTypes = {
   removeLastTag: PropTypes.func.isRequired,
 }
 
-export default TagsBlock
+export default TagsField

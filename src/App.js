@@ -5,7 +5,7 @@ import profileImage from './assets/profile-picture.png'
 import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
 import { charcoal } from './utilities/constants'
-import NewPost from './components/new-post/NewPost'
+import InputBlock from './components/input-block/InputBlock'
 import NavBar from './components/NavBar'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
@@ -63,7 +63,7 @@ class App extends Component {
           firstName={this.state.user.firstName}
           profileImage={this.state.user.profileImage}
         />
-        <NewPost createPost={this.createPost} />
+        <InputBlock createPost={this.createPost} />
         <PostFeed
           posts={this.state.posts}
         />

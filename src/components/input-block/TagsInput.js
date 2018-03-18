@@ -15,7 +15,7 @@ const TextInput = styled.input`
     width: 40px;
 `
 
-const TagsField = ({
+const TagsInput = ({
   removeLastTag,
   tagsInputFieldValue,
   handleTagsInput,
@@ -44,11 +44,11 @@ const TagsField = ({
   )
 }
 
-TagsField.propTypes = {
+TagsInput.propTypes = {
   tagsInputFieldValue: PropTypes.string.isRequired,
   handleTagsInput: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   removeLastTag: PropTypes.func.isRequired,
 }
 
-export default TagsField
+export default TagsInput

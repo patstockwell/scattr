@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import TagsBlock from './TagsBlock'
+import TagsField from './TagsField'
 import { lightGrey, seaGreen } from '../../utilities/constants'
 import ContentField from './ContentField'
 import { addToSet, removeFromSet } from '../../utilities/functions'
@@ -23,7 +23,7 @@ const FormWrapper = styled.div`
   margin: 0 auto;
 `
 
-class NewPost extends Component {
+class InputBlock extends Component {
   constructor() {
     super()
     this.state = {
@@ -101,7 +101,7 @@ class NewPost extends Component {
             contentInputFieldValue={this.state.contentInputFieldValue}
             handleContentInput={this.handleContentInput}
           />
-          <TagsBlock
+          <TagsField
             tags={Array.from(this.state.tags)}
             tagsInputFieldValue={this.state.tagsInputFieldValue}
             handleTagsInput={this.handleTagsInput}
@@ -115,8 +115,8 @@ class NewPost extends Component {
   }
 }
 
-NewPost.propTypes = {
+InputBlock.propTypes = {
   createPost: PropTypes.func.isRequired,
 }
 
-export default NewPost
+export default InputBlock
