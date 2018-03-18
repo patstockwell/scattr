@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import TagsBlock from './TagsBlock'
 import { lightGrey, seaGreen } from '../../utilities/constants'
 import ContentField from './ContentField'
+import { addToSet } from '../../utilities/functions'
 
 const SubmitButton = styled.input`
     outline: none;
@@ -39,7 +40,7 @@ class NewPost extends Component {
 
   handleTagsInput(event) {
     event.preventDefault()
-    const newTagList = event.target.value.trim().split(' ')
+    const newTagList = event.target.value.trim()
     const lastLetter = event.target.value.slice(-1)
     if (lastLetter === ' ' && event.target.value.length === 1) {
       // reset input when nothing but white space
@@ -48,16 +49,10 @@ class NewPost extends Component {
       })
     } else if (lastLetter === ' ') {
       // add finished word to set
-      this.setState((prevState) => {
-        const tagSet = new Set(prevState.tags)
-        for (let x = 0; x < newTagList.length; x += 1) {
-          tagSet.add(newTagList[x])
-        }
-        return {
-          tagsInputFieldValue: '',
-          tags: Array.from(tagSet),
-        }
-      })
+      this.setState(prevState => ({
+        tagsInputFieldValue: '',
+        tags: addToSet(prevState.tags, newTagList),
+      }))
     } else {
       // continue adding letters
       this.setState({
@@ -80,7 +75,7 @@ class NewPost extends Component {
     this.setState({
       contentInputFieldValue: '',
       tagsInputFieldValue: '',
-      tags: new Set(),
+      tags: [],
     })
   }
 
