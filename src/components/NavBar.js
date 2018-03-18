@@ -5,7 +5,7 @@ import { seaGreen } from '../utilities/constants'
 
 const Bar = styled.div`
   margin: 0 0 40px 0;
-  background-color: ${seaGreen};
+  background-color: ${seaGreen()};
   display: flex;
   justify-content: space-between;
   align-items: center;

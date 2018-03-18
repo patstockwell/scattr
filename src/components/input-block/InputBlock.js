@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import TagsField from './TagsField'
 import TitleField from './TitleField'
-import { lightGrey, seaGreen } from '../../utilities/constants'
+import { seaGreen } from '../../utilities/constants'
 import { addToSet, removeFromSet } from '../../utilities/functions'
 
 const SubmitButton = styled.input`
     outline: none;
-    background-color: ${seaGreen};
+    background-color: ${seaGreen(1)};
     color: white;
     font-weight: bold;
     border-radius: 5px;
     width: 100px;
     margin: 10px 0px;
-    border: 1px solid ${lightGrey};
+    border: none;
     padding: 8px 12px;
 `
 
@@ -94,6 +94,10 @@ class InputBlock extends Component {
   }
 
   render() {
+    // convert type of titleInput from string to boolean
+    const disabled = !this.state.titleInputFieldValue
+    const buttonColour = { backgroundColor: seaGreen(disabled ? 0.5 : 1) }
+
     return (
       <FormWrapper>
         <form onSubmit={this.handleSubmit} >
@@ -108,7 +112,12 @@ class InputBlock extends Component {
             removeTag={this.removeTag}
             removeLastTag={this.removeLastTag}
           />
-          <SubmitButton type="submit" value="Post" />
+          <SubmitButton
+            disabled={disabled}
+            type="submit"
+            value="Post"
+            style={buttonColour}
+          />
         </form>
       </FormWrapper>
     )
