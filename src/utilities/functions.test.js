@@ -1,9 +1,10 @@
-import { containsString, addToSet } from './functions'
+import { containsString, addToSet, removeFromSet } from './functions'
 
 /* global describe:true it:true expect:true */
 
 const emptyArray = []
 const stringsArray = ['firstString', 'another', 'howdy-pardner', '##%.,a a 4']
+const myObj = { key: 'value' }
 
 describe('the contains function', () => {
   describe('when the array is empty', () => {
@@ -52,7 +53,6 @@ describe('the addToSet function', () => {
       expect(addToSet(1234, 2345)).toEqual(1234)
     })
     it('should return the first argument when it\'s an object', () => {
-      const myObj = { key: 'value' }
       expect(addToSet(myObj, 2345)).toEqual(myObj)
     })
   })
@@ -79,6 +79,43 @@ describe('the addToSet function', () => {
         const oldArr = ['luke', 'vadar', 'yoda', 'rei']
         const item = 'luke'
         expect(addToSet(oldArr, item)).toEqual(oldArr)
+      })
+    })
+  })
+})
+
+describe('the removeFromSet function', () => {
+  describe('when the first argument is not array', () => {
+    it('should return the first argument if it is an integer', () => {
+      expect(removeFromSet(456, 122)).toEqual(456)
+    })
+    it('should return the first argument if it is an object', () => {
+      expect(removeFromSet(myObj, 122)).toEqual(myObj)
+    })
+    it('should return the first argument if it is a boolean', () => {
+      expect(removeFromSet(true, 122)).toEqual(true)
+    })
+  })
+
+  describe('when the second argument is missing', () => {
+    it('should return the same array', () => {
+      expect(removeFromSet(stringsArray)).toEqual(stringsArray)
+    })
+  })
+
+  describe('when the arguments are valid', () => {
+    describe('when the item is in the array', () => {
+      it('should return a new array without that item', () => {
+        const oldArr = ['Homer', 'Marge', 'Bart', 'Lisa', 'Maggie']
+        const newArr = ['Homer', 'Marge', 'Bart', 'Lisa']
+        expect(removeFromSet(oldArr, 'Maggie')).toEqual(newArr)
+      })
+    })
+
+    describe('when the item is not in the array', () => {
+      it('should return the array untouched', () => {
+        const oldArr = ['vim', 'emacs', 'vscode', 'sublime', 'atom', 'pico']
+        expect(removeFromSet(oldArr, 'textmate')).toEqual(oldArr)
       })
     })
   })

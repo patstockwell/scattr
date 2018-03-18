@@ -18,3 +18,12 @@ export const addToSet = (array, item) => {
   }
   return [...array, item]
 }
+
+export const removeFromSet = (array, item) => {
+  for (let x = 0; x < array.length; x += 1) {
+    if (array[x] === item) {
+      return array.slice(0, x).concat(array.slice(x + 1))
+    }
+  }
+  return array
+}

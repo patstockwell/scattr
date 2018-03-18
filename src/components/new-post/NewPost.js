@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import TagsBlock from './TagsBlock'
 import { lightGrey, seaGreen } from '../../utilities/constants'
 import ContentField from './ContentField'
-import { addToSet } from '../../utilities/functions'
+import { addToSet, removeFromSet } from '../../utilities/functions'
 
 const SubmitButton = styled.input`
     outline: none;
@@ -80,13 +80,9 @@ class NewPost extends Component {
   }
 
   removeTag(tag) {
-    this.setState((prevState) => {
-      const tagSet = new Set(prevState.tags)
-      tagSet.delete(tag)
-      return {
-        tags: Array.from(tagSet)
-      }
-    })
+    this.setState(prevState => ({
+      tags: removeFromSet(prevState.tags, tag)
+    }))
   }
 
   removeLastTag() {

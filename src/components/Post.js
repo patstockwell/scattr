@@ -45,10 +45,7 @@ const MarkDownWrapper = styled.div`
 `
 
 const Post = props => (
-  <PostTile
-    href=""
-    onDragOver={() => {console.log('wooooo')}}
-  >
+  <PostTile href="">
     <PostContentAndDetails>
       <MarkDownWrapper>
         <ReactMarkdown source={props.postContent} />
