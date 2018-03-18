@@ -37,14 +37,14 @@ class App extends Component {
     this.createPost = this.createPost.bind(this)
   }
 
-  createPost(content, tags) {
+  createPost(title, tags) {
     const newPost = {
       id: 234234285,
       timestamp: Date.now(),
       firstName: this.state.user.firstName,
       lastName: this.state.user.lastName,
       profileImage: this.state.user.profileImage,
-      postContent: content,
+      title,
       claps: 0,
       comments: [],
       tags: (tags || []),

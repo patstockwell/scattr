@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import TagsField from './TagsField'
+import TitleField from './TitleField'
 import { lightGrey, seaGreen } from '../../utilities/constants'
-import ContentField from './ContentField'
 import { addToSet, removeFromSet } from '../../utilities/functions'
 
 const SubmitButton = styled.input`
@@ -27,15 +27,22 @@ class InputBlock extends Component {
   constructor() {
     super()
     this.state = {
-      contentInputFieldValue: '',
+      titleInputFieldValue: '',
       tagsInputFieldValue: '',
       tags: [],
     }
-    this.handleContentInput = this.handleContentInput.bind(this)
+    this.handleTitleInput = this.handleTitleInput.bind(this)
     this.handleTagsInput = this.handleTagsInput.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.removeTag = this.removeTag.bind(this)
     this.removeLastTag = this.removeLastTag.bind(this)
+  }
+
+  handleTitleInput(event) {
+    event.preventDefault()
+    this.setState({
+      titleInputFieldValue: event.target.value,
+    })
   }
 
   handleTagsInput(event) {
@@ -61,19 +68,12 @@ class InputBlock extends Component {
     }
   }
 
-  handleContentInput(event) {
-    event.preventDefault()
-    this.setState({
-      contentInputFieldValue: event.target.value,
-    })
-  }
-
   handleSubmit(event) {
     event.preventDefault()
+    this.props.createPost(this.state.titleInputFieldValue, this.state.tags)
     // clear state
-    this.props.createPost(this.state.contentInputFieldValue, Array.from(this.state.tags))
     this.setState({
-      contentInputFieldValue: '',
+      titleInputFieldValue: '',
       tagsInputFieldValue: '',
       tags: [],
     })
@@ -97,12 +97,12 @@ class InputBlock extends Component {
     return (
       <FormWrapper>
         <form onSubmit={this.handleSubmit} >
-          <ContentField
-            contentInputFieldValue={this.state.contentInputFieldValue}
-            handleContentInput={this.handleContentInput}
+          <TitleField
+            titleInputFieldValue={this.state.titleInputFieldValue}
+            handleTitleInput={this.handleTitleInput}
           />
           <TagsField
-            tags={Array.from(this.state.tags)}
+            tags={this.state.tags}
             tagsInputFieldValue={this.state.tagsInputFieldValue}
             handleTagsInput={this.handleTagsInput}
             removeTag={this.removeTag}

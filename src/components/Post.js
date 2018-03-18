@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import ReactMarkdown from 'react-markdown'
 import TagList from './TagList'
 import PostDetails from './PostDetails'
 import { lightGrey, boxShadow } from '../utilities/constants'
@@ -30,26 +29,15 @@ const PostContentAndDetails = styled.div`
   margin: 0px 10px;
 `
 
-// these rules target the markdown content
-// they hide all but the first line of text.
-const MarkDownWrapper = styled.div`
-  font-size: 0.8em;
-  overflow-x: scroll;
-  p, h1, h2, h3, h4, h5, h6, li, a, pre, code {
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 400;
-    font-size: 14px;
-  }
+const Title = styled.p`
+  font-size: 0.9em;
+  margin: 0px;
 `
 
 const Post = props => (
   <PostTile href="">
     <PostContentAndDetails>
-      <MarkDownWrapper>
-        <ReactMarkdown source={props.postContent} />
-      </MarkDownWrapper>
+      <Title>{props.title}</Title>
       <TagList tags={props.tags} />
       <PostDetails
         {...props}
@@ -62,7 +50,7 @@ Post.propTypes = {
   profileImage: PropTypes.node.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  postContent: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   claps: PropTypes.number.isRequired,
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,

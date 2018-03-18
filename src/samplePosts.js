@@ -18,7 +18,7 @@ const samplePosts = [
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
-    postContent: 'The is the first idea to be posted to Scattr',
+    title: 'The is the first idea to be posted to Scattr',
     claps: 25,
     comments: sampleComments1,
     tags: ['#first', '#post', '#new', '#scattr', '#Patrick']
@@ -29,7 +29,7 @@ const samplePosts = [
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
-    postContent: 'The is the second idea to be posted to Scattr. It\'s a bit longer than the first. It also has a different key.',
+    title: 'The is the second idea to be posted to Scattr. It\'s a bit longer than the first. It also has a different key.',
     claps: 8,
     comments: sampleComments2,
     tags: ['#second', '#post', '#scattr', '#REAGroup']
@@ -40,7 +40,7 @@ const samplePosts = [
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
-    postContent: 'Remove handles from the "push-side" of the door',
+    title: 'Remove handles from the "push-side" of the door',
     claps: 41,
     comments: sampleComments2,
     tags: []
