@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { injectGlobal } from 'styled-components'
 import Head from './components/Head'
 import profileImage from './assets/profile-picture.png'
-import PostFeed from './components/PostFeed'
 import samplePosts from './samplePosts'
 import { charcoal } from './utilities/constants'
-import InputBlock from './components/input-block/InputBlock'
 import NavBar from './components/NavBar'
+import Home from './pages/Home'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
 
@@ -57,17 +57,29 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Head />
-        <NavBar
-          firstName={this.state.user.firstName}
-          profileImage={this.state.user.profileImage}
-        />
-        <InputBlock createPost={this.createPost} />
-        <PostFeed
-          posts={this.state.posts}
-        />
-      </div>
+      <Router>
+        <div className="App">
+          <Head />
+          <NavBar
+            firstName={this.state.user.firstName}
+            profileImage={this.state.user.profileImage}
+          />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Home
+                createPost={this.createPost}
+                posts={this.state.posts}
+              />
+            )}
+          />
+          <Route
+            path="/:post"
+            render={() => (<h2>you are on a post page</h2>)}
+          />
+        </div>
+      </Router>
     )
   }
 }
