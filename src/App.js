@@ -7,6 +7,7 @@ import samplePosts from './samplePosts'
 import { charcoal } from './utilities/constants'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
+import PostPage from './pages/PostPage'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
 
@@ -75,8 +76,12 @@ class App extends Component {
             )}
           />
           <Route
-            path="/:post"
-            render={() => (<h2>you are on a post page</h2>)}
+            path="/post/:id"
+            render={({ match }) => (
+              <PostPage
+                {...this.state.posts[match.params.id]}
+              />
+            )}
           />
         </div>
       </Router>
