@@ -8,6 +8,7 @@ import { charcoal } from './utilities/constants'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
 import PostPage from './pages/PostPage'
+import { convertToUrl } from './utilities/functions'
 
 /* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
 
@@ -39,6 +40,7 @@ class App extends Component {
   }
 
   createPost(title, tags) {
+    const slug = convertToUrl(title.slice(0, 50))
     const newPost = {
       id: 234234285,
       timestamp: Date.now(),
@@ -46,13 +48,14 @@ class App extends Component {
       lastName: this.state.user.lastName,
       profileImage: this.state.user.profileImage,
       title,
+      slug,
       claps: 0,
       comments: [],
       tags: (tags || []),
     }
 
     this.setState(prevState => ({
-      posts: [newPost, ...prevState.posts],
+      posts: { ...prevState.posts, newPost },
     }))
   }
 

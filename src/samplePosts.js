@@ -11,40 +11,43 @@ const sampleComments2 = [
   { name: 'Frederick', content: 'lol', id: 98275 },
 ]
 
-const samplePosts = [
-  {
+const samplePosts = {
+  'this-is-the-first-idea-to-be-posted-to-scattr': {
     id: 234234274,
     timestamp: 1520922244344,
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
-    title: 'The is the first idea to be posted to Scattr',
+    title: 'This is the first idea to be posted to Scattr',
+    slug: 'this-is-the-first-idea-to-be-posted-to-scattr',
     claps: 25,
     comments: sampleComments1,
     tags: ['#first', '#post', '#new', '#scattr', '#Patrick']
   },
-  {
+  'this-is-the-second-idea-to-be-posted-to-scattr': {
     id: 234234275,
     timestamp: 1520921244344,
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
     title: 'The is the second idea to be posted to Scattr. It\'s a bit longer than the first. It also has a different key.',
+    slug: 'this-is-the-second-idea-to-be-posted-to-scattr',
     claps: 8,
     comments: sampleComments2,
     tags: ['#second', '#post', '#scattr', '#REAGroup']
   },
-  {
+  'remove-handles-from-the-push-side-of-the-door': {
     id: 234234276,
     timestamp: 1520920244344,
     firstName: 'Patrick',
     lastName: 'Stockwell',
     profileImage,
     title: 'Remove handles from the "push-side" of the door',
+    slug: 'remove-handles-from-the-push-side-of-the-door',
     claps: 41,
     comments: sampleComments2,
     tags: []
   },
-]
+}
 
 export default samplePosts

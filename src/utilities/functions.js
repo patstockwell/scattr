@@ -27,3 +27,11 @@ export const removeFromSet = (array, item) => {
   }
   return array
 }
+
+export const convertToUrl = text => (
+  text
+    .toLowerCase()
+    .replace(/ /g, '-')
+    .replace(/[-]+/g, '-')
+    .replace(/[^\w-]+/g, '')
+)
